@@ -12,7 +12,7 @@ const startServer = async () => {
       console.log("✅ Database Connected Successfully!");
 
       app.listen(config.port, () => {
-        console.log(`✅ Server is running on port ${config.port}`);
+        console.log(`✅ Server is running on port: ${config.port}`);
       });
     } catch (error) {
       console.log(error);
