@@ -11,9 +11,6 @@ app.use(
   })
 );
 
-
-
-
 app.get("/", (req: Request, res: Response) => {
   try {
     res.status(200).json({
