@@ -1,8 +1,6 @@
 import {Server} from "http";
 import mongoose from "mongoose";
 import app from "./app";
-// import config from "./app/modules/config";
-// import config from "./app/modules/config";
 
 let server: Server;
 
