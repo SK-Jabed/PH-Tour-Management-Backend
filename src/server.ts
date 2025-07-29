@@ -50,9 +50,21 @@ process.on("uncaughtException", (err) => {
 
 // throw new Error("I forgot to handle this local error...");
 
-// ----- Signal Termination (SIGTERM) -----
-process.on("SIGTERM", (err) => {
-  console.log("SIGTERM signal received, Shutting Down the server...", err);
+// ----- Signal Terminate (SIGTERM) -----
+process.on("SIGTERM", () => {
+  console.log("SIGTERM signal received, Shutting Down the server...");
+
+  if (server) {
+    server.close(() => {
+      process.exit(1);
+    });
+  }
+  process.exit(1);
+});
+
+// ----- Signal Interrupt (SIGINT) -----
+process.on("SIGINT", () => {
+  console.log("SIGINT signal received, Shutting Down the server...");
 
   if (server) {
     server.close(() => {
@@ -66,5 +78,6 @@ process.on("SIGTERM", (err) => {
  * * --- Error handlers ---
  * Unhandled Rejection Error
  * Uncaught Exception Error
- * Signal Termination (SIGTERM)
+ * Signal Terminate (SIGTERM)
+ * Signal Interrupt (SIGINT)
  */
