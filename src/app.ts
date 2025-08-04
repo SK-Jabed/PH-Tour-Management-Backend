@@ -5,11 +5,7 @@ const app: Application = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(cors());
 
 app.get("/", (req: Request, res: Response) => {
   try {
