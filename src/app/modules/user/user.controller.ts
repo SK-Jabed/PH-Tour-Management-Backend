@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from "express";
 
-const createUser = async (req: Request, res: Response) => {
-    try {
-        
-    } catch (err: any) {
-        res.status(400).json({
-            message: `Something went wrong ${err.message}`,
-            err
-        })
-    }
-}
+const createUser = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const user = await UserServices.createUser(req.body);
+
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.CREATED,
+      message: "User Created Successfully",
+      data: user,
+    });
+  }
+);
